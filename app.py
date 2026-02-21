@@ -7,8 +7,14 @@ from utils.scoring import calculate_match_score
 app = Flask(__name__)
 
 # Load dataset once
-df = pd.read_excel("data/influencer_dataset_300_records.xlsx")
-df = preprocess_data(df)
+import os
+import pandas as pd
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+file_path = os.path.join(BASE_DIR, "Data", "influencer_dataset_300_records.xlsx")
+
+df = pd.read_excel(file_path)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
