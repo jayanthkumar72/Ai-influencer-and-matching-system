@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Influencer Matching</title>
+</head>
+<body>
+
+    <h2>AI Influencer Matching System</h2>
+
+    <form method="POST">
+
+        <label>Select Brand Category:</label>
+        <select name="category">
+            {% for cat in categories %}
+                <option value="{{ cat }}">{{ cat }}</option>
+            {% endfor %}
+        </select>
+
+        <br><br>
+
+        <label>Select Target Country:</label>
+        <select name="country">
+            {% for c in countries %}
+                <option value="{{ c }}">{{ c }}</option>
+            {% endfor %}
+        </select>
+
+        <br><br>
+
+        <button type="submit">Find Influencers</button>
+
+    </form>
+
+    {% if results %}
+        <h3>Top Matching Influencers:</h3>
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Match Score</th>
+            </tr>
+            {% for row in results %}
+                <tr>
+                    <td>{{ row.channel_name }}</td>
+                    <td>{{ "%.4f"|format(row.match_score) }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+</body>
+</html>
