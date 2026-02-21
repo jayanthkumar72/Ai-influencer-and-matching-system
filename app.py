@@ -15,6 +15,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 file_path = os.path.join(BASE_DIR, "Data", "influencer_dataset_300_records.xlsx")
 
 df = pd.read_excel(file_path)
+df = preprocess_data(df)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
